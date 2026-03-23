@@ -3,13 +3,11 @@ package com.example.spaceapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.appcompat.widget.Toolbar
 
 /**
  * Settings Screen Activity
@@ -17,13 +15,11 @@ import androidx.core.view.WindowInsetsCompat
  */
 class SettingsActivity : AppCompatActivity() {
 
-    private lateinit var ivBackIcon: ImageView
     private lateinit var itemDarkMode: LinearLayout
     private lateinit var itemLanguage: LinearLayout
     private lateinit var itemAbout: LinearLayout
     private lateinit var toggleDarkMode: View
     private lateinit var btnLogout: AppCompatButton
-    private lateinit var mainContent: View
 
     // Bottom Nav
     private lateinit var navHome: LinearLayout
@@ -36,8 +32,10 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        // Handle edge-to-edge display with safe areas
-        setupWindowInsets()
+        // Set up the Toolbar as ActionBar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Initialize views
         initViews()
@@ -46,27 +44,12 @@ class SettingsActivity : AppCompatActivity() {
         setupClickListeners()
     }
 
-    private fun setupWindowInsets() {
-        mainContent = findViewById(R.id.mainContent)
-
-        ViewCompat.setOnApplyWindowInsetsListener(mainContent) { view, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-
-            // Apply padding for status bar at top
-            val scrollView = findViewById<View>(R.id.scrollView)
-            scrollView.setPadding(
-                scrollView.paddingLeft,
-                systemBars.top + 16,
-                scrollView.paddingRight,
-                scrollView.paddingBottom
-            )
-
-            insets
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     private fun initViews() {
-        ivBackIcon = findViewById(R.id.ivBackIcon)
         itemDarkMode = findViewById(R.id.itemDarkMode)
         itemLanguage = findViewById(R.id.itemLanguage)
         itemAbout = findViewById(R.id.itemAbout)
@@ -80,10 +63,6 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun setupClickListeners() {
-        ivBackIcon.setOnClickListener {
-            finish()
-        }
-
         itemDarkMode.setOnClickListener {
             isDarkModeOn = !isDarkModeOn
             toggleDarkMode.setBackgroundResource(

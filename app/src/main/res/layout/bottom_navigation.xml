@@ -8,7 +8,7 @@
     android:paddingStart="24dp"
     android:paddingEnd="24dp">
 
-    <!-- Home -->
+    <!-- 1st position - Settings icon, Home text -->
     <LinearLayout
         android:id="@+id/navHome"
         android:layout_width="0dp"
@@ -23,7 +23,7 @@
             android:id="@+id/ivNavHome"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_home"/>
+            android:src="@drawable/nav_settings"/>
 
         <TextView
             android:id="@+id/tvNavHome"
@@ -37,7 +37,7 @@
 
     </LinearLayout>
 
-    <!-- Profile -->
+    <!-- 2nd position - Home icon, Profile text -->
     <LinearLayout
         android:id="@+id/navProfile"
         android:layout_width="0dp"
@@ -52,7 +52,7 @@
             android:id="@+id/ivNavProfile"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_profile"/>
+            android:src="@drawable/nav_home"/>
 
         <TextView
             android:id="@+id/tvNavProfile"
@@ -66,7 +66,7 @@
 
     </LinearLayout>
 
-    <!-- Settings -->
+    <!-- 3rd position - Profile icon, Settings text -->
     <LinearLayout
         android:id="@+id/navSettings"
         android:layout_width="0dp"
@@ -81,7 +81,7 @@
             android:id="@+id/ivNavSettings"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_settings_nav"/>
+            android:src="@drawable/nav_profile"/>
 
         <TextView
             android:id="@+id/tvNavSettings"

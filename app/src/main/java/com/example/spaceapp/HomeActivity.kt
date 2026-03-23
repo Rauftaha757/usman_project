@@ -2,15 +2,13 @@ package com.example.spaceapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.appcompat.widget.Toolbar
 
 /**
  * Home (Dashboard) Screen Activity
@@ -19,13 +17,13 @@ import androidx.core.view.WindowInsetsCompat
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var etSearch: EditText
-    private lateinit var ivHomeIcon: ImageView
+    private lateinit var toolbar: Toolbar
+    private lateinit var tvTitle: TextView
     private lateinit var ivNotification: ImageView
     private lateinit var tvViewAll: TextView
     private lateinit var cardMars: LinearLayout
     private lateinit var cardJupiter: LinearLayout
-    private lateinit var cardSaturn: LinearLayout
-    private lateinit var mainContent: View
+    private lateinit var cardOrion: LinearLayout
 
     // Bottom Nav
     private lateinit var navHome: LinearLayout
@@ -36,8 +34,9 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // Handle edge-to-edge display with safe areas
-        setupWindowInsets()
+        // Set up the Toolbar as ActionBar
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         // Initialize views
         initViews()
@@ -46,34 +45,14 @@ class HomeActivity : AppCompatActivity() {
         setupClickListeners()
     }
 
-    private fun setupWindowInsets() {
-        mainContent = findViewById(R.id.mainContent)
-
-        ViewCompat.setOnApplyWindowInsetsListener(mainContent) { view, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-
-            // Apply padding for status bar at top
-            // Bottom navigation already handles its own insets
-            val scrollView = findViewById<View>(R.id.scrollView)
-            scrollView.setPadding(
-                scrollView.paddingLeft,
-                systemBars.top + 16,
-                scrollView.paddingRight,
-                scrollView.paddingBottom
-            )
-
-            insets
-        }
-    }
-
     private fun initViews() {
         etSearch = findViewById(R.id.etSearch)
-        ivHomeIcon = findViewById(R.id.ivHomeIcon)
+        tvTitle = findViewById(R.id.tvTitle)
         ivNotification = findViewById(R.id.ivNotification)
         tvViewAll = findViewById(R.id.tvViewAll)
         cardMars = findViewById(R.id.cardMars)
         cardJupiter = findViewById(R.id.cardJupiter)
-        cardSaturn = findViewById(R.id.cardSaturn)
+        cardOrion = findViewById(R.id.cardOrion)
 
         // Bottom Nav
         navHome = findViewById(R.id.navHome)
@@ -82,10 +61,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupClickListeners() {
-        ivHomeIcon.setOnClickListener {
-            Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
-        }
-
         ivNotification.setOnClickListener {
             Toast.makeText(this, "Notifications", Toast.LENGTH_SHORT).show()
         }
@@ -105,11 +80,11 @@ class HomeActivity : AppCompatActivity() {
         }
 
         cardJupiter.setOnClickListener {
-            Toast.makeText(this, "Jupiter - Gas Giant", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Jupiter - The largest planet in our solar system", Toast.LENGTH_SHORT).show()
         }
 
-        cardSaturn.setOnClickListener {
-            Toast.makeText(this, "Saturn - Ringed Planet", Toast.LENGTH_SHORT).show()
+        cardOrion.setOnClickListener {
+            Toast.makeText(this, "Orion Nebula - A diffuse nebula in the Milky Way", Toast.LENGTH_SHORT).show()
         }
 
         navHome.setOnClickListener {
