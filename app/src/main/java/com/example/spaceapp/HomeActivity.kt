@@ -29,11 +29,11 @@ class HomeActivity : AppCompatActivity() {
 
     // Bottom Nav
     private lateinit var navHome: LinearLayout
-    private lateinit var navProfile: LinearLayout
     private lateinit var navSettings: LinearLayout
     private lateinit var tvNavHome: TextView
-    private lateinit var tvNavProfile: TextView
     private lateinit var tvNavSettings: TextView
+    private lateinit var ivNavHome: ImageView
+    private lateinit var ivNavSettings: ImageView
 
     companion object {
         var currentNavIndex: Int = 0
@@ -76,24 +76,30 @@ class HomeActivity : AppCompatActivity() {
 
         // Bottom Nav
         navHome = findViewById(R.id.navHome)
-        navProfile = findViewById(R.id.navProfile)
         navSettings = findViewById(R.id.navSettings)
         tvNavHome = findViewById(R.id.tvNavHome)
-        tvNavProfile = findViewById(R.id.tvNavProfile)
         tvNavSettings = findViewById(R.id.tvNavSettings)
+        ivNavHome = findViewById(R.id.ivNavHome)
+        ivNavSettings = findViewById(R.id.ivNavSettings)
     }
 
     private fun updateNavState(index: Int) {
         // Reset all to inactive
         tvNavHome.setTextColor(Color.parseColor("#AAAAAA"))
-        tvNavProfile.setTextColor(Color.parseColor("#AAAAAA"))
         tvNavSettings.setTextColor(Color.parseColor("#AAAAAA"))
+        ivNavHome.setColorFilter(Color.parseColor("#AAAAAA"))
+        ivNavSettings.setColorFilter(Color.parseColor("#AAAAAA"))
 
         // Set active
         when (index) {
-            0 -> tvNavHome.setTextColor(Color.parseColor("#6C5CE7"))
-            1 -> tvNavProfile.setTextColor(Color.parseColor("#6C5CE7"))
-            2 -> tvNavSettings.setTextColor(Color.parseColor("#6C5CE7"))
+            0 -> {
+                tvNavHome.setTextColor(Color.parseColor("#6C5CE7"))
+                ivNavHome.setColorFilter(Color.parseColor("#6C5CE7"))
+            }
+            1 -> {
+                tvNavSettings.setTextColor(Color.parseColor("#6C5CE7"))
+                ivNavSettings.setColorFilter(Color.parseColor("#6C5CE7"))
+            }
         }
         currentNavIndex = index
     }
@@ -132,13 +138,8 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        navProfile.setOnClickListener {
-            updateNavState(1)
-            Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
-        }
-
         navSettings.setOnClickListener {
-            updateNavState(2)
+            updateNavState(1)
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }

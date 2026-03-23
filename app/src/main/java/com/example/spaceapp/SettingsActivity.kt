@@ -3,13 +3,11 @@ package com.example.spaceapp
 import android.content.Intent
 import android.os.Bundle
 import android.graphics.Color
-import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 
 /**
  * Settings Screen Activity
@@ -30,23 +28,18 @@ class SettingsActivity : AppCompatActivity() {
 
     // Bottom Nav
     private lateinit var navHome: LinearLayout
-    private lateinit var navProfile: LinearLayout
     private lateinit var navSettings: LinearLayout
     private lateinit var tvNavHome: TextView
-    private lateinit var tvNavProfile: TextView
     private lateinit var tvNavSettings: TextView
+    private lateinit var ivNavHome: ImageView
+    private lateinit var ivNavSettings: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        // Set current nav index to Settings (2)
-        HomeActivity.currentNavIndex = 2
-
-        // Set up the Toolbar as ActionBar
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // Set current nav index to Settings (1)
+        HomeActivity.currentNavIndex = 1
 
         // Initialize views
         initViews()
@@ -55,7 +48,7 @@ class SettingsActivity : AppCompatActivity() {
         setupProfileData()
 
         // Set active state
-        updateNavState(2)
+        updateNavState(1)
 
         // Set up click listeners
         setupClickListeners()
@@ -63,7 +56,7 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        updateNavState(2)
+        updateNavState(1)
     }
 
     private fun initViews() {
@@ -80,38 +73,39 @@ class SettingsActivity : AppCompatActivity() {
 
         // Bottom Nav
         navHome = findViewById(R.id.navHome)
-        navProfile = findViewById(R.id.navProfile)
         navSettings = findViewById(R.id.navSettings)
         tvNavHome = findViewById(R.id.tvNavHome)
-        tvNavProfile = findViewById(R.id.tvNavProfile)
         tvNavSettings = findViewById(R.id.tvNavSettings)
+        ivNavHome = findViewById(R.id.ivNavHome)
+        ivNavSettings = findViewById(R.id.ivNavSettings)
     }
 
     private fun setupProfileData() {
         // Set profile name and level
         // In a real app, this would come from user data
         tvProfileName.text = "Space Explorer"
-        tvLevel.text = "Level 5"
+        tvLevel.text = "Level 5 Explorer"
     }
 
     private fun updateNavState(index: Int) {
         // Reset all to inactive
         tvNavHome.setTextColor(Color.parseColor("#AAAAAA"))
-        tvNavProfile.setTextColor(Color.parseColor("#AAAAAA"))
         tvNavSettings.setTextColor(Color.parseColor("#AAAAAA"))
+        ivNavHome.setColorFilter(Color.parseColor("#AAAAAA"))
+        ivNavSettings.setColorFilter(Color.parseColor("#AAAAAA"))
 
         // Set active
         when (index) {
-            0 -> tvNavHome.setTextColor(Color.parseColor("#6C5CE7"))
-            1 -> tvNavProfile.setTextColor(Color.parseColor("#6C5CE7"))
-            2 -> tvNavSettings.setTextColor(Color.parseColor("#6C5CE7"))
+            0 -> {
+                tvNavHome.setTextColor(Color.parseColor("#6C5CE7"))
+                ivNavHome.setColorFilter(Color.parseColor("#6C5CE7"))
+            }
+            1 -> {
+                tvNavSettings.setTextColor(Color.parseColor("#6C5CE7"))
+                ivNavSettings.setColorFilter(Color.parseColor("#6C5CE7"))
+            }
         }
         HomeActivity.currentNavIndex = index
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return true
     }
 
     private fun setupClickListeners() {
@@ -137,11 +131,6 @@ class SettingsActivity : AppCompatActivity() {
         navHome.setOnClickListener {
             updateNavState(0)
             finish()
-        }
-
-        navProfile.setOnClickListener {
-            updateNavState(1)
-            Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
         }
 
         navSettings.setOnClickListener {

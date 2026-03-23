@@ -8,7 +8,8 @@
       "Bash(adb shell:*)",
       "Bash(./gradlew installDebug)",
       "Bash($HOME/Library/Android/sdk/platform-tools/adb devices:*)",
-      "Bash($HOME/Library/Android/sdk/platform-tools/adb shell:*)"
+      "Bash($HOME/Library/Android/sdk/platform-tools/adb shell:*)",
+      "Bash(ls -la /Users/taharauf/AndroidStudioProjects/spaceapp/app/src/main/res/drawable/nav_*.png)"
     ]
   }
 }

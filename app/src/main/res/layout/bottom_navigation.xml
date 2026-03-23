@@ -8,7 +8,7 @@
     android:paddingStart="24dp"
     android:paddingEnd="24dp">
 
-    <!-- 1st position - Settings icon, Home text -->
+    <!-- 1st position - Home -->
     <LinearLayout
         android:id="@+id/navHome"
         android:layout_width="0dp"
@@ -23,7 +23,8 @@
             android:id="@+id/ivNavHome"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_home_simple"/>
+            android:src="@drawable/ic_home_simple"
+            android:tint="#6C5CE7"/>
 
         <TextView
             android:id="@+id/tvNavHome"
@@ -37,36 +38,7 @@
 
     </LinearLayout>
 
-    <!-- 2nd position - Home icon, Profile text -->
-    <LinearLayout
-        android:id="@+id/navProfile"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:clickable="true"
-        android:focusable="true">
-
-        <ImageView
-            android:id="@+id/ivNavProfile"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/nav_home"/>
-
-        <TextView
-            android:id="@+id/tvNavProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Profile"
-            android:textColor="#AAAAAA"
-            android:textSize="12sp"
-            android:fontFamily="sans-serif"/>
-
-    </LinearLayout>
-
-    <!-- 3rd position - Profile icon, Settings text -->
+    <!-- 2nd position - Settings -->
     <LinearLayout
         android:id="@+id/navSettings"
         android:layout_width="0dp"
@@ -81,7 +53,8 @@
             android:id="@+id/ivNavSettings"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/nav_profile"/>
+            android:src="@drawable/nav_profile"
+            android:tint="#AAAAAA"/>
 
         <TextView
             android:id="@+id/tvNavSettings"
