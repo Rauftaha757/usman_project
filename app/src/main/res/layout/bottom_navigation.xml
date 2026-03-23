@@ -23,7 +23,7 @@
             android:id="@+id/ivNavHome"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/nav_settings"/>
+            android:src="@drawable/ic_home_simple"/>
 
         <TextView
             android:id="@+id/tvNavHome"

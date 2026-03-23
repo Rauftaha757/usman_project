@@ -6,7 +6,9 @@
       "Bash(~/Library/Android/sdk/platform-tools/adb shell:*)",
       "Bash(~/Library/Android/sdk/platform-tools/adb logcat:*)",
       "Bash(adb shell:*)",
-      "Bash(./gradlew installDebug)"
+      "Bash(./gradlew installDebug)",
+      "Bash($HOME/Library/Android/sdk/platform-tools/adb devices:*)",
+      "Bash($HOME/Library/Android/sdk/platform-tools/adb shell:*)"
     ]
   }
 }

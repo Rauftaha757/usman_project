@@ -2,6 +2,7 @@ package com.example.spaceapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.graphics.Color
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -9,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 
 /**
  * Home (Dashboard) Screen Activity
@@ -29,10 +31,20 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var navHome: LinearLayout
     private lateinit var navProfile: LinearLayout
     private lateinit var navSettings: LinearLayout
+    private lateinit var tvNavHome: TextView
+    private lateinit var tvNavProfile: TextView
+    private lateinit var tvNavSettings: TextView
+
+    companion object {
+        var currentNavIndex: Int = 0
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        // Set current nav index to Home (0)
+        currentNavIndex = 0
 
         // Set up the Toolbar as ActionBar
         toolbar = findViewById(R.id.toolbar)
@@ -41,8 +53,16 @@ class HomeActivity : AppCompatActivity() {
         // Initialize views
         initViews()
 
+        // Set active state
+        updateNavState(0)
+
         // Set up click listeners
         setupClickListeners()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateNavState(currentNavIndex)
     }
 
     private fun initViews() {
@@ -58,6 +78,24 @@ class HomeActivity : AppCompatActivity() {
         navHome = findViewById(R.id.navHome)
         navProfile = findViewById(R.id.navProfile)
         navSettings = findViewById(R.id.navSettings)
+        tvNavHome = findViewById(R.id.tvNavHome)
+        tvNavProfile = findViewById(R.id.tvNavProfile)
+        tvNavSettings = findViewById(R.id.tvNavSettings)
+    }
+
+    private fun updateNavState(index: Int) {
+        // Reset all to inactive
+        tvNavHome.setTextColor(Color.parseColor("#AAAAAA"))
+        tvNavProfile.setTextColor(Color.parseColor("#AAAAAA"))
+        tvNavSettings.setTextColor(Color.parseColor("#AAAAAA"))
+
+        // Set active
+        when (index) {
+            0 -> tvNavHome.setTextColor(Color.parseColor("#6C5CE7"))
+            1 -> tvNavProfile.setTextColor(Color.parseColor("#6C5CE7"))
+            2 -> tvNavSettings.setTextColor(Color.parseColor("#6C5CE7"))
+        }
+        currentNavIndex = index
     }
 
     private fun setupClickListeners() {
@@ -88,14 +126,19 @@ class HomeActivity : AppCompatActivity() {
         }
 
         navHome.setOnClickListener {
-            Toast.makeText(this, "Already on Home", Toast.LENGTH_SHORT).show()
+            if (currentNavIndex != 0) {
+                updateNavState(0)
+                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
+            }
         }
 
         navProfile.setOnClickListener {
+            updateNavState(1)
             Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
         }
 
         navSettings.setOnClickListener {
+            updateNavState(2)
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
