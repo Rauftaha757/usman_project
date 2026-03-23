@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Theme Colors for Space App -->
+    <color name="dark_background">#121212</color>
+    <color name="dark_card">#1E1E1E</color>
+    <color name="dark_search">#2A2A2A</color>
+    <color name="dark_text_primary">#FFFFFF</color>
+    <color name="dark_text_secondary">#AAAAAA</color>
+    <color name="dark_accent">#6C5CE7</color>
+    <color name="dark_nav_bar">#1E1E1E</color>
+</resources>

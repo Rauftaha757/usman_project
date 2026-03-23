@@ -1,0 +1,69 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Android App (Debug)",
+            "type": "shell",
+            "command": "./gradlew",
+            "args": ["assembleDebug"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gradle"],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Install Android App",
+            "type": "shell",
+            "command": "adb",
+            "args": ["install", "-r", "app/build/outputs/apk/debug/app-debug.apk"],
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "Launch Android App",
+            "type": "shell",
+            "command": "adb",
+            "args": ["shell", "am", "start", "-n", "com.example.spaceapp/.LoginActivity"],
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "Build, Install & Launch",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Build Android App (Debug)",
+                "Install Android App",
+                "Launch Android App"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean Build",
+            "type": "shell",
+            "command": "./gradlew",
+            "args": ["clean"],
+            "group": "build",
+            "problemMatcher": ["$gradle"]
+        },
+        {
+            "label": "Uninstall App",
+            "type": "shell",
+            "command": "adb",
+            "args": ["uninstall", "com.example.spaceapp"],
+            "problemMatcher": []
+        }
+    ]
+}

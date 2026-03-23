@@ -1,0 +1,7 @@
+{
+    "java.project.sourcePaths": ["app/src/main/java"],
+    "java.project.outputPath": "app/build/intermediates/javac",
+    "files.associations": {
+        "*.xml": "xml"
+    }
+}
